@@ -1,0 +1,17 @@
+[project]
+dependencies = [
+    "arcade<=2",
+    "pyglet<2",
+]
+name = "astro-barrier-parody"
+readme = "README.md"
+requires-python = ">=3.8,<3.12"
+version = "0.1.0"
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.30.0",
+]
+
+[tool.poe.tasks]
+game.script = "main:main"
