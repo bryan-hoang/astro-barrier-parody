@@ -7,6 +7,8 @@ Created on Sat Dec  1 17:13:47 2018
 
 import arcade
 
+asset_path = "./assets"
+
 SCREEN_WIDTH = 800
 
 
@@ -15,10 +17,10 @@ class Target(arcade.AnimatedTimeSprite):
         # take x and y vars from AnimatedTimeSprite)
         super().__init__(scale=scale, center_x=center_x, center_y=center_y)
         self.textures.append(
-            arcade.load_texture("../textures/Astro_Barrier_Target.png")
+            arcade.load_texture(f"{asset_path}/astro_barrier_target.png")
         )
         self.textures.append(
-            arcade.load_texture("../textures/Red_Target.png", scale=0.5)
+            arcade.load_texture(f"{asset_path}/red_target.png", scale=0.5)
         )
         self.change_x = 0
 

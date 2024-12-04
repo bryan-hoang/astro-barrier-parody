@@ -6,9 +6,9 @@ Created on Sat Dec  1 12:15:14 2018
 
 import arcade
 from enum import Enum
-from Target import Target
+from target import Target
 
-# import numpy as np
+asset_path = "./assets"
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -43,7 +43,9 @@ class Player(arcade.Sprite):
 class AstroBarrier(arcade.Window):
     def __init__(self):
         # Call the parent class initializer
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Club Penguin - Astro Barrier")
+        super().__init__(
+            SCREEN_WIDTH, SCREEN_HEIGHT, "Club Penguin - Astro Barrier (Parody)"
+        )
         self.player_list = None
         self.holster = None
         self.player_sprite = None
@@ -62,7 +64,6 @@ class AstroBarrier(arcade.Window):
         arcade.set_background_color(arcade.color.DARK_GREEN)
 
     def setup(self):
-
         self.player_list = arcade.SpriteList()
         self.target_sprites = arcade.SpriteList()
         self.bullet_sprites = arcade.SpriteList()
@@ -75,7 +76,7 @@ class AstroBarrier(arcade.Window):
         self.total_time = 11.0
 
         self.player_sprite = Player(
-            "../textures/Astro_Barrier_Ship_pin.png", SPRITE_SCALING_SHIP
+            f"{asset_path}/astro_barrier_ship_pin.png", SPRITE_SCALING_SHIP
         )
         self.player_sprite.center_x = 400
         self.player_sprite.center_y = 40
@@ -83,7 +84,6 @@ class AstroBarrier(arcade.Window):
 
         # Create the targets
         for i in range(TARGET_COUNT + self.level - 1):
-
             # Create the targets instance
             # targets image from kenney.nl
             target = Target(SPRITE_SCALING_TARGET, 400, 280 + i * 80)
@@ -196,7 +196,7 @@ class AstroBarrier(arcade.Window):
             self.draw_game_over()
 
     def update(self, delta_time):
-        """ Movement and game logic """
+        """Movement and game logic"""
 
         # Calculate speed based on the keys pressed
         self.player_sprite.change_x = 0
@@ -253,7 +253,7 @@ class AstroBarrier(arcade.Window):
     # initialize a shit ton of variables
 
     def on_key_press(self, key, modifiers):
-        """Called whenever a key is pressed. """
+        """Called whenever a key is pressed."""
         if self.state == gameState.MAIN_MENU:
             self.setup()
             self.state = gameState.PLAYING
@@ -261,7 +261,7 @@ class AstroBarrier(arcade.Window):
             if key == arcade.key.SPACE:
                 # Create a bullet
                 self.holster -= 1
-                bullet = arcade.Sprite("../textures/Bullet.png", SPRITE_SCALING_BULLET)
+                bullet = arcade.Sprite(f"{asset_path}/bullet.png", SPRITE_SCALING_BULLET)
 
                 # Give the bullet a speed
                 bullet.change_y = BULLET_SPEED
@@ -284,7 +284,7 @@ class AstroBarrier(arcade.Window):
             self.setup()
 
     def on_key_release(self, key, modifiers):
-        """Called when the user releases a key. """
+        """Called when the user releases a key."""
 
         if key == arcade.key.LEFT:
             self.left_pressed = False
@@ -293,7 +293,7 @@ class AstroBarrier(arcade.Window):
 
 
 def main():
-    """ Main method """
+    """Main method"""
     game = AstroBarrier()
     game.setup()
     arcade.run()
